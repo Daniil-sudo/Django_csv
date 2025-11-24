@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>{{ phone.name }} - Детали телефона</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .phone-detail { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+        .phone-image { flex: 1 1 400px; /* Allows image to shrink/grow */ }
+        .phone-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            display: block;
+            background-color: #f8f9fa;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .phone-info { flex: 2 1 500px; /* Allows text to take more space */ }
+        .phone-info h1 {
+            margin-bottom: 15px;
+            font-size: 2.5em;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .phone-info p { margin-bottom: 15px; font-size: 1.1em; line-height: 1.6; }
+        .phone-info .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 25px;
+        }
+        .phone-info .label {
+            font-weight: bold;
+            color: #555;
+            display: inline-block;
+            min-width: 150px; /* Align labels */
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .phone-detail { flex-direction: column; align-items: center; }
+            .phone-image img { max-width: 300px; }
+            .phone-info h1 { font-size: 2em; }
+            .phone-info .price { font-size: 1.8em; }
+            .phone-info .label { min-width: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="phone-detail">
+            <div class="phone-image">
+                <img src="" alt="{{ phone.name }}">
+            </div>
+            <div class="phone-info">
+                <h1>{{ phone.name }}</h1>
+                <p class="price">{{ phone.price }} ₽</p>
+                <p><span class="label">Дата выпуска:</span> {{ phone.release_date|date:"d E Y" }}</p>
+                <p><span class="label">Поддержка LTE:</span> {% if phone.lte_exists %}Есть{% else %}Нет{% endif %}</p>
+                <p><span class="label">Slug:</span> <code>{{ phone.slug }}</code></p>
+                <!-- Дополнительные поля, если они есть в модели и нужны -->
+            </div>
+        </div>
+
+        <a href="{% url 'phone_catalog' %}" class="back-link">&larr; Вернуться в каталог</a>
+    </div>
+</body>
+</html>
