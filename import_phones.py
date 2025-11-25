@@ -1,6 +1,6 @@
 import csv
 from django.core.management.base import BaseCommand
-from models import Phone
+from .models import Phone
 from django.core.validators import URLValidator
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError  # Для проверки валидности данных
